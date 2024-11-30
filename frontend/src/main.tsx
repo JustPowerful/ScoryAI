@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import QueryProvider from "./components/providers/QueryProvider";
 import Layout from "./components/global/Layout";
 import Subjects from "./components/pages/Subjects";
+import Subject from "./components/pages/Subject";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/subjects", element: <Subjects /> },
+      { path: "/subject/:id", element: <Subject /> },
     ],
   },
 ]);

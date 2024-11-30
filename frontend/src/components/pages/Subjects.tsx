@@ -186,7 +186,7 @@ const Subjects = () => {
         </DialogContent>
       </Dialog>
 
-      <Container className="p-8">
+      <Container className="px-8">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold">
