@@ -6,6 +6,7 @@ const app = new Elysia();
 // routes
 import authRoute from "./routes/auth.route";
 import subjectRoute from "./routes/subject.route";
+import predictionRoute from "./routes/prediction.route";
 
 app.use(staticPlugin());
 
@@ -18,7 +19,7 @@ app.get("/health", () => {
 });
 
 app.group("/api", (app) => {
-  return app.use(authRoute).use(subjectRoute);
+  return app.use(authRoute).use(subjectRoute).use(predictionRoute);
 });
 
 app.listen(3000);
