@@ -46,11 +46,12 @@ export const subjectRelations = relations(subjectTable, ({ one }) => ({
 
 export const predictionTable = pgTable("predictions", {
   id: uuid("id").primaryKey().defaultRandom(),
-  user_id: uuid("user_id").notNull(),
   subject_id: uuid("subject_id").notNull(),
   hours_studied: decimal("hours_studied").notNull(),
   attendance: decimal("attendance").notNull(),
+  access_to_ressource: decimal("access_to_ressource").notNull(),
   tutoring_sessions: decimal("tutoring_sessions").notNull(),
+  predicted_score: decimal("predicted_score").notNull(),
 });
 
 export const predictionRelations = relations(predictionTable, ({ one }) => ({
