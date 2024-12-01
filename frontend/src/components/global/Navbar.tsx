@@ -426,7 +426,7 @@ const Navbar = () => {
   const loading = useAuth((state) => state.loading);
   const [toggled, setToggled] = useState(false);
   return (
-    <div className="box-border absolute top-0 left-0 w-full p-6 z-40">
+    <div className="box-border fixed top-0 left-0 w-full p-6 z-10">
       <div className="flex items-center justify-between bg-blue-900 bg-opacity-25 backdrop-blur-lg py-2 px-6 rounded-md">
         <div>
           <h1 className="text-xl flex items-center">
