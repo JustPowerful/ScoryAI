@@ -6,6 +6,7 @@ import {
   boolean,
   pgEnum,
   decimal,
+  timestamp,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-typebox";
 
@@ -52,6 +53,7 @@ export const predictionTable = pgTable("predictions", {
   access_to_ressource: decimal("access_to_ressource").notNull(),
   tutoring_sessions: decimal("tutoring_sessions").notNull(),
   predicted_score: decimal("predicted_score").notNull(),
+  created_at: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const predictionRelations = relations(predictionTable, ({ one }) => ({
