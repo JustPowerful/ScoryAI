@@ -1,4 +1,5 @@
 import { Elysia, t } from "elysia";
+import { omit } from "radash";
 
 import { userInsertSchema, usersTable } from "../db/schema";
 import { db } from "../db";
@@ -120,14 +121,11 @@ authRoute.post(
       httpOnly: true,
     });
 
+    const cleanedUserData = omit(user, ["password"]);
+
     return {
       message: "Login successful",
-      user: {
-        id: user.id,
-        email: user.email,
-        firstname: user.firstname,
-        lastname: user.lastname,
-      },
+      user: cleanedUserData,
     };
   },
   {
@@ -146,15 +144,10 @@ authRoute.post("/logout", async ({ cookie: { auth } }) => {
 });
 
 authRoute.use(authPlugin).post("/validate", async ({ user }) => {
-  const { id, firstname, lastname, email } = user;
+  const cleanedUserData = omit(user, ["password"]);
   return {
     message: "Successfully validated the user.",
-    user: {
-      id,
-      firstname,
-      lastname,
-      email,
-    },
+    user: cleanedUserData,
   };
 });
 

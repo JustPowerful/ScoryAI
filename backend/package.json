@@ -16,7 +16,8 @@
     "drizzle-orm": "^0.36.3",
     "drizzle-typebox": "^0.1.1",
     "elysia": "latest",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "radash": "^12.1.0"
   },
   "devDependencies": {
     "@types/pg": "^8.11.10",
