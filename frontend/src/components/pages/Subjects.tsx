@@ -22,6 +22,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Link } from "react-router-dom";
+import Lottie from "lottie-react";
+import robotAnimation from "@/assets/lottie/robot.json";
 
 const Subject = ({
   subject,
@@ -188,13 +190,16 @@ const Subjects = () => {
 
       <Container className="px-8">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold">
-              Hello, {user?.firstname}.
-            </h1>
-            <p className="text-gray-500">
-              Here are the subjects you are currently studying.
-            </p>
+          <div className="flex items-center">
+            <Lottie animationData={robotAnimation} className="w-20 h-20" />
+            <div>
+              <h1 className="text-2xl font-semibold">
+                Hello, {user?.firstname}.
+              </h1>
+              <p className="text-gray-500">
+                Here are the subjects you are currently studying.
+              </p>
+            </div>
           </div>
           <div>
             <Button
