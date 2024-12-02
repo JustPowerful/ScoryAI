@@ -1,4 +1,4 @@
-import { Eye, Loader2, User } from "lucide-react";
+import { Eye, LibraryBig, Loader2, User } from "lucide-react";
 import robotJson from "@/assets/lottie/robot.json";
 import { Button } from "../ui/button";
 import {
@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "@radix-ui/react-label";
@@ -60,7 +60,7 @@ const LoginModal = () => {
   async function handleLogin() {
     try {
       await login(form.email, form.password);
-      navigate("/dashboard");
+      navigate("/subjects");
     } catch (error) {
       toast("An error occurred", {
         icon: "❌",
@@ -427,7 +427,7 @@ const Navbar = () => {
   const [toggled, setToggled] = useState(false);
   return (
     <div className="box-border fixed top-0 left-0 w-full p-6 z-10">
-      <div className="flex items-center justify-between bg-blue-900 bg-opacity-25 backdrop-blur-lg py-2 px-6 rounded-md">
+      <div className="flex items-center justify-between bg-slate-500  py-2 px-6 rounded-md">
         <div>
           <h1 className="text-xl flex items-center">
             <Lottie animationData={robotJson} className="w-8 h-8" /> Scory
@@ -446,7 +446,7 @@ const Navbar = () => {
                   onClick={() => {
                     setToggled((prev) => !prev);
                   }}
-                  className="p-3  rounded-full bg-slate-500 text-white flex items-center justify-center"
+                  className="p-3  rounded-full bg-slate-700 text-white flex items-center justify-center"
                 >
                   <User className="w-4 h-4" />
                 </button>
@@ -454,6 +454,18 @@ const Navbar = () => {
                 {toggled && (
                   <div className="absolute top-full mt-2 right-0 w-[200px] bg-white p-4 rounded-md shadow-md">
                     <p className="text-sm font-semibold"></p>
+                    <Link
+                      to="/account"
+                      className="flex items-center gap-1 p-2 rounded hover:bg-zinc-200"
+                    >
+                      <User className="w-4 h-4" /> Account
+                    </Link>
+                    <Link
+                      to="/subjects"
+                      className="flex items-center gap-1 p-2 rounded hover:bg-zinc-200"
+                    >
+                      <LibraryBig className="w-4 h-4" /> Subjects
+                    </Link>
                     <Button
                       onClick={() => {
                         logout();
