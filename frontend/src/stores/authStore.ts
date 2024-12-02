@@ -8,7 +8,14 @@ export const useAuth = create<{
     firstname: string;
     lastname: string;
     email: string;
-    role: "professor" | "student" | "admin";
+    parental_involvment: boolean;
+    distance_from_home: string;
+    sleep_hours: number;
+    motivation_level: string;
+    internet_access: boolean;
+    school_type: string;
+    gender: string;
+    learning_disability: boolean;
   } | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -32,7 +39,14 @@ export const useAuth = create<{
                 firstname: data.user.firstname,
                 lastname: data.user.lastname,
                 email: data.user.email,
-                role: data.user.role,
+                parental_involvment: data.user.parental_involvment,
+                distance_from_home: data.user.distance_from_home,
+                sleep_hours: data.user.sleep_hours,
+                motivation_level: data.user.motivation_level,
+                internet_access: data.user.internet_access,
+                school_type: data.user.school_type,
+                gender: data.user.gender,
+                learning_disability: data.user.learning_disability,
               },
             });
           }
@@ -69,11 +83,18 @@ export const useAuth = create<{
             if (response.ok) {
               set({
                 user: {
-                  id: "data.user.id",
+                  id: data.user.id,
                   firstname: data.user.firstname,
                   lastname: data.user.lastname,
                   email: data.user.email,
-                  role: data.user.role,
+                  parental_involvment: data.user.parental_involvment,
+                  distance_from_home: data.user.distance_from_home,
+                  sleep_hours: data.user.sleep_hours,
+                  motivation_level: data.user.motivation_level,
+                  internet_access: data.user.internet_access,
+                  school_type: data.user.school_type,
+                  gender: data.user.gender,
+                  learning_disability: data.user.learning_disability,
                 },
               });
             }
