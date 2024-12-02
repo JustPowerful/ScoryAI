@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Container from "../global/Container";
 import { useQuery } from "react-query";
 import { Button } from "../ui/button";
-import { Loader2, Plus } from "lucide-react";
+import { Check, Loader2, Plus, XIcon } from "lucide-react";
 
 import {
   Dialog,
@@ -15,7 +15,7 @@ import {
 
 import { Slider } from "@/components/ui/slider";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "../ui/input";
 
 const Subject = () => {
@@ -54,7 +54,7 @@ const Subject = () => {
     data: predictionsData,
     isLoading: isPredictionsLoading,
   } = useQuery("getPredictions", getPredictions, {
-    refetchOnMount: false,
+    refetchOnMount: true,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     retry: false,
@@ -220,9 +220,9 @@ const Subject = () => {
                         })
                       }
                     >
-                      <option value="0">Low</option>
+                      <option value="2">Low</option>
                       <option value="1">Medium</option>
-                      <option value="2">High</option>
+                      <option value="0">High</option>
                     </select>
                   </div>
                   <Button
@@ -269,6 +269,9 @@ const Subject = () => {
                   <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Predicted Score
                   </th>
+                  <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -285,12 +288,25 @@ const Subject = () => {
                         {prediction.tutoring_sessions} sessions/month
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {prediction.access_to_ressource === "0" && "LOW"}
+                        {prediction.access_to_ressource === "2" && "LOW"}
                         {prediction.access_to_ressource === "1" && "MEDIUM"}
-                        {prediction.access_to_ressource === "2" && "HIGH"}
+                        {prediction.access_to_ressource === "0" && "HIGH"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {Number(prediction.predicted_score).toFixed(2)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {Number(prediction.predicted_score) >= 50 ? (
+                          <span className="text-green-600 flex items-center gap-1">
+                            {" "}
+                            <Check className="w-4 h-4" /> Pass
+                          </span>
+                        ) : (
+                          <span className="text-red-500 flex items-center gap-1">
+                            <XIcon className="w-4 h-4" />
+                            Fail
+                          </span>
+                        )}
                       </td>
                     </tr>
                   ))}
